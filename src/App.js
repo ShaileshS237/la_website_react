@@ -2,7 +2,6 @@ import logo from "./assets/la_logo.png";
 import header from "./assets/header.png";
 import astrick from "./assets/astrick.png";
 import background from "./assets/background.png";
-import hamburger from "./assets/hamburger.png";
 import bus from "./assets/bus.png";
 import crop from "./assets/crop.png";
 import blooddonation from "./assets/blooddonation.png";
