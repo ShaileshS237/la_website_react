@@ -4,11 +4,9 @@ import astrick from "./assets/astrick.png";
 import background from "./assets/background.png";
 import bus from "./assets/bus.png";
 import crop from "./assets/crop.png";
-import blooddonation from "./assets/blooddonation.png";
 import bd1 from "./assets/newbd1.png";
 import bd2 from "./assets/newbd2.png";
 import bd3 from "./assets/newbd3.png";
-import bd4 from "./assets/newbd4.png";
 
 import downloadapp from "./assets/downloadapp.png";
 import gplay from "./assets/GooglePlay.png";
