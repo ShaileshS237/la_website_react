@@ -5,6 +5,11 @@ import background from "./assets/background.png";
 import bus from "./assets/bus.png";
 import crop from "./assets/crop.png";
 import blooddonation from "./assets/blooddonation.png";
+import bd1 from "./assets/newbd1.png";
+import bd2 from "./assets/newbd2.png";
+import bd3 from "./assets/newbd3.png";
+import bd4 from "./assets/newbd4.png";
+
 import downloadapp from "./assets/downloadapp.png";
 import gplay from "./assets/GooglePlay.png";
 import youtube from "./assets/youtube.png";
@@ -69,7 +74,7 @@ function App() {
 				style={{ backgroundImage: `url(${background})` }}
 			>
 				<div className="px-4 lg:px-[15rem] mx-auto">
-					<div className=" items-center justify-between py-4">
+					<div className=" py-4 flex justify-center w-[70%] lg:w-[100%] lg:block">
 						<img src={logo} alt="logo" />
 
 						{/* <div className="flex gap-2 items-center">
@@ -149,7 +154,7 @@ function App() {
 				</div>
 
 				<div className="grid lg:grid-cols-3 gap-5 mt-5">
-					<div className="col-span-1 lg:col-span-2 flex flex-col items-center h-auto lg:h-[580px] overflow-hidden bg-[#E7EFFF] rounded-2xl p-4">
+					<div className="col-span-1 lg:col-span-2 flex flex-col items-center h-auto lg:h-[530px] overflow-hidden bg-[#E7EFFF] rounded-2xl p-4">
 						<div className="text-transparent mt-5 bg-clip-text bg-gradient-to-r from-[#00133F] to-[#0534A3] text-2xl lg:text-4xl font-bold leading-tight pt-4 text-center">
 							MSRTC (ST Bus) वेळापत्रक
 						</div>
@@ -159,7 +164,7 @@ function App() {
 						</p>
 						<img className="w-[60%] lg:w-[40%]" src={bus} alt="bus" />
 					</div>
-					<div className="col-span-1 flex flex-col items-center h-auto lg:h-[580px] overflow-hidden bg-[#FFE7E7] rounded-2xl p-4">
+					<div className="col-span-1 flex flex-col items-center h-auto lg:h-[530px] overflow-hidden bg-[#FFE7E7] rounded-2xl p-4">
 						<div className="text-transparent mt-5 bg-clip-text bg-gradient-to-r from-[#00133F] to-[#0534A3] text-2xl lg:text-4xl font-bold leading-tight pt-4 text-center">
 							रक्त दान
 						</div>
@@ -168,16 +173,23 @@ function App() {
 							व्हा <br />
 							आणि आपल्या समाजाला साथ द्या.
 						</p>
-						<img
+						<div className="grid grid-cols-1 gap-5">
+							<img src={bd1} alt="" className="rounded-lg h-[100px]" />
+							{/* <img src={bd2} alt="" /> */}
+							{/* <img src={bd3} alt="" /> */}
+							<img src={bd3} alt="" className="rounded-lg h-[100px]" />
+							<img src={bd2} alt="" className="rounded-lg h-[100px]" />
+						</div>
+						{/* <img
 							className="w-[80%] lg:w-[60%]"
 							src={blooddonation}
 							alt="blood donation"
-						/>
+						/> */}
 					</div>
 				</div>
 			</div>
 
-			<div className="relative px-4 lg:px-[15rem] mt-10">
+			<div className="relative px-4 lg:px-[15rem] mt-10  ">
 				<img src={downloadapp} alt="Download App" className="w-full" />
 				<div className="absolute top-0 left-0 w-full h-full px-4 lg:px-[15rem] flex flex-col mt-2 lg:mt-32 ml-4 lg:ml-16">
 					<p className="text-white text-1xl lg:text-5xl font-bold py-4 rounded">
@@ -188,7 +200,7 @@ function App() {
 			</div>
 			<div className="px-4 lg:px-[15rem] mt-10">
 				<div className="py-4 flex flex-col lg:flex-row justify-between items-center">
-					<div className="mb-4 lg:mb-0">
+					<div className="mb-4 lg:mb-0 flex lg:grid justify-center">
 						<img src={logo} alt="logo" className="w-[50%] lg:w-[70%]" />
 					</div>
 					<div className="flex gap-4 lg:gap-10 items-center">
