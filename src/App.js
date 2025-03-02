@@ -22,6 +22,7 @@ function App() {
 						<ExternalRedirect url="https://play.google.com/store/apps/details?id=com.dts.freefiremax&pcampaignid=merch-FCC-gpg-dynasty-free-fire-max-websky&hl=en" />
 					}
 				/>
+
 				<Route path="/terms-and-conditions" element={<TNC />}></Route>
 				<Route path="/" element={<Home />} />
 			</Routes>
