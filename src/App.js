@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./component/Home";
+import TNC from "./component/TNC";
 
 function ExternalRedirect({ url }) {
 	useEffect(() => {
@@ -21,6 +22,7 @@ function App() {
 						<ExternalRedirect url="https://play.google.com/store/apps/details?id=com.dts.freefiremax&pcampaignid=merch-FCC-gpg-dynasty-free-fire-max-websky&hl=en" />
 					}
 				/>
+				<Route path="/terms-and-conditions" element={<TNC />}></Route>
 				<Route path="/" element={<Home />} />
 			</Routes>
 		</Router>
