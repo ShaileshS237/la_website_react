@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./component/Home";
 import TNC from "./component/TNC";
+import PrivacyPolicy from "./component/Privacy";
 
 function ExternalRedirect({ url }) {
 	useEffect(() => {
@@ -24,6 +25,7 @@ function App() {
 				/>
 
 				<Route path="/terms-and-conditions" element={<TNC />}></Route>
+				<Route path="/privacy-policy" element={<PrivacyPolicy />}></Route>
 				<Route path="/" element={<Home />} />
 			</Routes>
 		</Router>
