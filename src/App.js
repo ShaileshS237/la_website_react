@@ -4,6 +4,7 @@ import "./App.css";
 import Home from "./component/Home";
 import TNC from "./component/TNC";
 import PrivacyPolicy from "./component/Privacy";
+import SafetyStandards from "./component/SaftyStandards";
 
 function ExternalRedirect({ url }) {
 	useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
 
 				<Route path="/terms-and-conditions" element={<TNC />}></Route>
 				<Route path="/privacy-policy" element={<PrivacyPolicy />}></Route>
+				<Route path="/safety-standards" element={<SafetyStandards />}></Route>
 				<Route path="/" element={<Home />} />
 			</Routes>
 		</Router>
