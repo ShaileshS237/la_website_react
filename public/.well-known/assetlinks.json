@@ -1,12 +1,27 @@
 [
 	{
-		"relation": ["delegate_permission/common.handle_all_urls"],
-		"target": {
-			"namespace": "android_app",
-			"package_name": "com.loveakot.app",
-			"sha256_cert_fingerprints": [
-				"93:C5:AE:85:6B:DF:FF:37:D6:39:03:E9:E8:8A:E9:21:80:B3:31:05:D0:B3:63:49:8A:7A:AD:EF:52:41:8E:1E"
-			]
-		}
+	  "relation": [
+		"delegate_permission/common.handle_all_urls"
+	  ],
+	  "target": {
+		"namespace": "android_app",
+		"package_name": "com.loveakot.app",
+		"sha256_cert_fingerprints": [
+		  "93:C5:AE:85:6B:DF:FF:37:D6:39:03:E9:E8:8A:E9:21:80:B3:31:05:D0:B3:63:49:8A:7A:AD:EF:52:41:8E:1E"
+		]
+	  }
+	},
+	{
+	  "relation": [
+		"delegate_permission/common.handle_all_urls",
+		"delegate_permission/common.get_login_creds"
+	  ],
+	  "target": {
+		"namespace": "android_app",
+		"package_name": "com.loveakot.android",
+		"sha256_cert_fingerprints": [
+		  "90:F6:4C:FD:AC:AC:87:35:E7:3D:7B:AC:45:99:19:15:AF:F5:D2:5D:4F:C7:5F:1A:98:0F:A5:AC:66:63:66:42"
+		]
+	  }
 	}
-]
+  ]
