@@ -4,6 +4,10 @@
 	font-family: "Anek Devanagari", sans-serif;
 }
 
+body {
+	background-color: #ffffff;
+}
+
 .App {
 	/* text-align: center; */
 }
