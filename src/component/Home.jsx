@@ -14,8 +14,8 @@ import { Link } from "react-router-dom";
 
 const NAV_ITEMS = [
 	{ id: "home", label: "मुख्यपृष्ठ" },
-	{ id: "features", label: "वैशिष्ट्ये" },
 	{ id: "about", label: "आमच्याबद्दल" },
+	{ id: "features", label: "वैशिष्ट्ये" },
 	{ id: "contact", label: "संपर्क" },
 ];
 
