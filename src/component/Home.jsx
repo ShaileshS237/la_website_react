@@ -6,7 +6,6 @@ import bgImage from "../assets/bg-2.png";
 import "../App.css";
 import Marquee from "react-fast-marquee";
 import astrick from "../assets/astrick.png";
-import youtube from "../assets/youtube.png";
 import facebook from "../assets/facebook.png";
 import instagram from "../assets/instagram.png";
 import footer from "../assets/footerpng.png";
