@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Download, Menu, Minus, Plus, X } from "lucide-react";
 import logo from "../assets/la_logo.png";
 import bgImage from "../assets/bg-2.png";
@@ -10,6 +10,8 @@ import youtube from "../assets/youtube.png";
 import facebook from "../assets/facebook.png";
 import instagram from "../assets/instagram.png";
 import footer from "../assets/footerpng.png";
+import { Link } from "react-router-dom";
+
 const NAV_ITEMS = [
 	{ id: "home", label: "मुख्यपृष्ठ" },
 	{ id: "features", label: "वैशिष्ट्ये" },
@@ -88,11 +90,11 @@ const NavBar = () => {
 		if (section) {
 			section.scrollIntoView({ behavior: "smooth" });
 		}
-		setIsMenuOpen(false); // Close menu on navigation
+		setIsMenuOpen(false);
 	};
 
 	return (
-		<nav className="text-black px-4">
+		<nav className="text-black px-4 absolute z-50 w-full">
 			<div className="container mx-auto bg-white shadow-sm px-4 sm:px-8 py-4 rounded-full flex justify-between items-center">
 				<img
 					src={logo}
@@ -129,37 +131,45 @@ const NavBar = () => {
 					{isMenuOpen ? <X size={24} /> : <Menu size={24} />}
 				</button>
 			</div>
-			{/* Mobile Menu */}
-			{isMenuOpen && (
-				<div className="md:hidden bg-white shadow-md rounded-lg mt-2 mx-1 p-4 z-50 relative">
-					<ul className="space-y-4">
-						{NAV_ITEMS.map(({ id, label }) => (
-							<li key={id}>
-								<button
-									onClick={() => handleScroll(id)}
-									className="focus:outline-none w-full text-left"
-								>
-									{label}
-								</button>
-							</li>
-						))}
-					</ul>
-					<a
-						href="https://play.google.com/store/apps/details?id=com.loveakot.android&pcampaignid=web_share"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="block mt-4"
+
+			{/* Mobile Menu with Smooth Animation */}
+			<AnimatePresence>
+				{isMenuOpen && (
+					<motion.div
+						initial={{ opacity: 0, y: -20 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: -20 }}
+						transition={{ duration: 0.3, ease: "easeInOut" }}
+						className="md:hidden bg-white rounded-2xl mt-2 mx-1 p-4 z-50 relative"
 					>
-						<button className="flex gap-2 bg-[#02123f] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-[#6968ad] transition-all duration-300 w-full justify-center">
-							<Download /> <span className="mt-1">आताच डाउनलोड करा</span>
-						</button>
-					</a>
-				</div>
-			)}
+						<ul className="space-y-4">
+							{NAV_ITEMS.map(({ id, label }) => (
+								<li key={id}>
+									<button
+										onClick={() => handleScroll(id)}
+										className="focus:outline-none w-full text-left"
+									>
+										{label}
+									</button>
+								</li>
+							))}
+						</ul>
+						<a
+							href="https://play.google.com/store/apps/details?id=com.loveakot.android&pcampaignid=web_share"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="block mt-4"
+						>
+							<button className="flex gap-2 bg-[#02123f] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-[#6968ad] transition-all duration-300 w-full justify-center">
+								<Download /> <span className="mt-1">आताच डाउनलोड करा</span>
+							</button>
+						</a>
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</nav>
 	);
 };
-
 const HeroSection = () => (
 	<section className="text-white pt-6 sm:pt-12 text-center px-4">
 		<h1 className="text-4xl sm:text-5xl md:text-7xl font-bold">
@@ -177,62 +187,6 @@ const HeroSection = () => (
 				alt="Background illustration"
 				className="w-[80%] sm:w-[70%] md:w-[50%] object-contain"
 			/>
-		</div>
-	</section>
-);
-
-const FeaturesSection = () => (
-	<section
-		id="features"
-		className="my-12 sm:my-20 py-12 sm:py-20 text-center mx-auto bg-[#e2e1fc5d]"
-	>
-		<h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 text-center px-4">
-			लव्ह आकोटची खास वैशिष्ट्ये
-		</h2>
-		<h2 className="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 text-center px-4">
-			आमच्या अ‍ॅपमधील उपयुक्त आणि अनोखी फिचर्स जाणून घ्या
-		</h2>
-
-		<div className="flex justify-center items-center mt-6 sm:mt-8 mx-auto container ">
-			<div className="flex flex-col md:flex-row w-auto place-items-center">
-				{elements.slice(0, 4).map(({ image, text }, index) => (
-					<div
-						key={index}
-						className={`flex flex-col items-center text-center ${
-							!image ? "hidden" : ""
-						}`}
-					>
-						{image && (
-							<img
-								src={image}
-								alt={text}
-								className=" w-3/4 md:w-[450px] object-contain filter grayscale hover:filter-none transition-all duration-700"
-							/>
-						)}
-					</div>
-				))}
-			</div>
-		</div>
-
-		<div className="flex justify-center items-center mt-3 sm:mt-8 mx-auto container ">
-			<div className="flex flex-col md:flex-row md:gap-6 w-auto place-items-center">
-				{elements.slice(4, 7).map(({ image, text }, index) => (
-					<div
-						key={index}
-						className={`flex flex-col items-center text-center ${
-							!image ? "hidden" : ""
-						}`}
-					>
-						{image && (
-							<img
-								src={image}
-								alt={text}
-								className="w-3/4 md:w-[390px] object-contain filter grayscale hover:filter-none transition-all duration-700"
-							/>
-						)}
-					</div>
-				))}
-			</div>
 		</div>
 	</section>
 );
@@ -273,6 +227,62 @@ const AboutSection = () => (
 			करण्यासाठी एक प्रभावी प्लॅटफॉर्म मिळतो, ज्यामुळे त्यांचा व्यवसाय अधिक
 			लोकांपर्यंत पोहोचतो.
 		</motion.p>
+	</section>
+);
+
+const FeaturesSection = () => (
+	<section
+		id="features"
+		className="my-12 sm:my-20 py-12 sm:py-20 text-center mx-auto bg-[#e2e1fc5d]"
+	>
+		<h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 text-center px-4">
+			लव्ह आकोटची खास वैशिष्ट्ये
+		</h2>
+		<h2 className="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 text-center px-4">
+			आमच्या अ‍ॅपमधील उपयुक्त आणि अनोखी फिचर्स जाणून घ्या
+		</h2>
+
+		<div className="flex justify-center items-center mt-6 sm:mt-8 mx-auto container ">
+			<div className="flex flex-col md:flex-row w-auto place-items-center">
+				{elements.slice(0, 4).map(({ image, text }, index) => (
+					<div
+						key={index}
+						className={`flex flex-col items-center text-center ${
+							!image ? "hidden" : ""
+						}`}
+					>
+						{image && (
+							<img
+								src={image}
+								alt={text}
+								className=" w-3/4 md:w-[450px] object-contain filter md:grayscale md:hover:filter-none transition-all duration-700"
+							/>
+						)}
+					</div>
+				))}
+			</div>
+		</div>
+
+		<div className="flex justify-center items-center mt-3 sm:mt-8 mx-auto container ">
+			<div className="flex flex-col md:flex-row md:gap-6 w-auto place-items-center">
+				{elements.slice(4, 7).map(({ image, text }, index) => (
+					<div
+						key={index}
+						className={`flex flex-col items-center text-center ${
+							!image ? "hidden" : ""
+						}`}
+					>
+						{image && (
+							<img
+								src={image}
+								alt={text}
+								className="w-3/4 md:w-[390px] object-contain filter md:grayscale md:hover:filter-none transition-all duration-700"
+							/>
+						)}
+					</div>
+				))}
+			</div>
+		</div>
 	</section>
 );
 
@@ -328,80 +338,107 @@ function FAQ() {
 	);
 }
 
+const DownloadApp = () => {
+	return (
+		<div className=" container mx-auto px-4">
+			<div className="relative flex  flex-col md:flex-row h-[400px] my-16 bg-[#6f40ff] rounded-3xl overflow-hidden">
+				<div className="w-full md:w-3/4 flex pl-10 md:pl-20  items-start justify-center flex-col relative top-5 md:top-0 z-20">
+					<h1 className="text-xl md:text-4xl leading-snug md:mb-5 text-white font-bold">
+						तुमचं शहर, तुमची कम्युनिटी <br />
+						सगळं एकाच अ‍ॅपमध्ये! <br /> लव्ह आकोट आजच डाउनलोड करा!
+					</h1>
+					<a
+						href="https://play.google.com/store/apps/details?id=com.loveakot.android&pcampaignid=web_share"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<button className="flex gap-2 bg-[#02123f] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-white hover:text-black transition-all duration-300">
+							<Download /> <span className="mt-1">डाउनलोड करा</span>
+						</button>
+					</a>
+				</div>
+				<div className="relative w-full left-[0%] bottom-[5px]  md:bottom-[30%] rotate-1">
+					<img src={footer} alt="footer" className="w-[100%] object-cover" />
+				</div>
+			</div>
+		</div>
+	);
+};
+
 const Footer = () => {
 	return (
 		<div className="container mx-auto mt-10 px-4">
 			<div className="py-4 flex flex-col lg:flex-row justify-between items-center">
 				<div className="mb-4 lg:mb-0 flex justify-center md:justify-start">
-					<img src={logo} alt="logo" className="w-[40%] lg:w-[20%]" />
+					<img src={logo} alt="लोगो" className="w-[40%] lg:w-[20%]" />
 				</div>
 				<div className="flex gap-4 lg:gap-5 items-center">
-					<img
-						src={instagram}
-						alt="Instagram"
-						className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px]"
-					/>
-					<img
-						src={youtube}
-						alt="YouTube"
-						className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px]"
-					/>
-					<img
-						src={facebook}
-						alt="Facebook"
-						className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px]"
-					/>
+					<a
+						href="https://www.instagram.com/love.akot/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<img
+							src={instagram}
+							alt="इंस्टाग्राम"
+							className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px]"
+						/>
+					</a>
+					<a
+						href="https://www.instagram.com/love.akot/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<img
+							src={youtube}
+							alt="यूट्यूब"
+							className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px]"
+						/>
+					</a>
+					<a
+						href="https://www.facebook.com/loveAkot"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<img
+							src={facebook}
+							alt="फेसबुक"
+							className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px]"
+						/>
+					</a>
 				</div>
 			</div>
 
 			<hr className="w-full mx-auto border-gray-200" />
 			<div className="text-sm sm:text-base text-gray-600 py-4 flex flex-col lg:flex-row justify-between items-center">
 				<div>
-					<p>@2025 All Rights Reserved</p>
+					<p>@2025 सर्व हक्क राखीव</p>
 				</div>
 				<div className="flex gap-4 lg:gap-9 mt-4 lg:mt-0">
-					<p>Terms and Conditions</p>
-					<p>Privacy Policy</p>
+					<Link to={"/terms-and-conditions"}>
+						<p>अटी आणि शर्ती</p>
+					</Link>
+					<Link to={"/privacy-policy"}>
+						<p>गोपनीयता धोरण</p>
+					</Link>
 				</div>
 			</div>
 		</div>
 	);
 };
 
-const DownloadApp = () => {
-	return (
-		<div className="relative flex  flex-col md:flex-row h-[400px] my-16 bg-[#6f40ff] rounded-3xl overflow-hidden  container mx-auto">
-			<div className="w-full md:w-3/4 flex pl-20  items-start justify-center flex-col relative top-10 md:top-0">
-				<h1 className="text-xl md:text-4xl leading-snug mb-5 text-white font-bold">
-					तुमचं शहर, तुमची कम्युनिटी <br />
-					सगळं एकाच अ‍ॅपमध्ये! <br /> लव्ह आकोट आजच डाउनलोड करा!
-				</h1>
-				<a
-					href="https://play.google.com/store/apps/details?id=com.loveakot.android&pcampaignid=web_share"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<button className="flex gap-2 bg-[#02123f] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-white hover:text-black transition-all duration-300">
-						<Download /> <span className="mt-1">डाउनलोड करा</span>
-					</button>
-				</a>
-			</div>
-			<div className="relative w-full left-[0%] bottom-[-40px]  md:bottom-[10%] ">
-				<img src={footer} alt="footer" className="w-[100%] object-cover" />
-			</div>
-		</div>
-	);
-};
 // Main Component
 const Home = () => {
 	return (
 		<div className="App">
 			<div
 				id="home"
-				className="h-[540px] md:h-screen py-5 relative bg-gradient-to-b from-[#6f40ff] to-transparent overflow-hidden"
+				className=" h-[500px] md:h-screen py-5 relative bg-gradient-to-b from-[#6f40ff] to-transparent overflow-hidden"
 			>
 				<NavBar />
-				<HeroSection />
+				<div className="mt-20 md:mt-24">
+					<HeroSection />
+				</div>
 			</div>
 
 			<div>
