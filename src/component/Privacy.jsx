@@ -4,16 +4,19 @@ import logo from "../assets/newla_logo_white.png";
 const PrivacyPolicy = () => {
 	return (
 		<div className="App">
-			<div id="home" className="pt-3 pb-5 px-96 bg-[#6f40ff] text-white">
-				<img src={logo} className="w-1/5" alt="" />
+			<div
+				id="home"
+				className="pt-3 pb-5 md:px-96 px-3  bg-[#6f40ff] text-white"
+			>
+				<img src={logo} className="w-1/2 md:w-1/5" alt="" />
 			</div>
-			<div className="px-96 py-6">
+			<div className="md:px-96 py-6  px-4">
 				<h1 className="text-3xl font-bold">Privacy Policy</h1>
 				<h1 className="text-lg font-extralight mb-7">
 					Last update: 23 March 2025 12:42 P.M
 				</h1>
 
-				<div className="space-y-6 text-gray-700">
+				<div className="md:space-y-6 text-gray-700">
 					<section>
 						<h2 className="text-2xl font-semibold mt-6">1. Introduction</h2>
 						<p className="mb-4">
