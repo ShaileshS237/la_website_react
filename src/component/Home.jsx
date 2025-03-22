@@ -330,7 +330,7 @@ const FeaturesSection = () => (
 				</div>
 			))}
 		</div>
-		<div className="container mx-auto grid md:grid-cols-3 gap-4">
+		<div className="container mx-auto grid md:grid-cols-3 gap-4 px-4 md:px-0">
 			{elements.slice(4, 8).map((element, index) => (
 				<div
 					key={index}
