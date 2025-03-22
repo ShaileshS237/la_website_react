@@ -245,7 +245,7 @@ const AboutSection = () => (
 			आमच्या समुदाय-आधारित अ‍ॅपविषयी जाणून घ्या
 		</motion.h2>
 		<motion.p
-			className="w-full sm:w-[80%] md:w-[50%] text-xl sm:text-2xl md:text-3xl font-semibold mx-auto leading-[160%] sm:leading-[180%] text-gray-700"
+			className="w-full sm:w-[80%] md:w-[50%] text-lg md:text-3xl font-semibold mx-auto leading-[160%] md:leading-[180%] text-gray-700"
 			initial={{ opacity: 0, y: 50 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.8, ease: "easeOut" }}
@@ -319,7 +319,7 @@ const Footer = () => {
 	return (
 		<div className="container mx-auto mt-10 px-4">
 			<div className="py-4 flex flex-col lg:flex-row justify-between items-center">
-				<div className="mb-4 lg:mb-0 flex justify-center w-full lg:w-auto">
+				<div className="mb-4 lg:mb-0 flex justify-center md:justify-start">
 					<img src={logo} alt="logo" className="w-[40%] lg:w-[20%]" />
 				</div>
 				<div className="flex gap-4 lg:gap-5 items-center">
@@ -357,9 +357,9 @@ const Footer = () => {
 
 const DownloadApp = () => {
 	return (
-		<div className="flex flex-col md:flex-row h-auto md:h-[400px] my-10 sm:my-16 bg-[#6f40ff] rounded-3xl overflow-hidden relative container mx-auto px-4">
-			<div className="w-full md:w-3/4 flex px-6 md:pl-20 py-8 md:py-0 items-start justify-center flex-col">
-				<h1 className="text-2xl sm:text-3xl md:text-4xl leading-snug mb-5 text-white font-bold">
+		<div className="relative flex  flex-col md:flex-row h-[400px] my-16 bg-[#6f40ff] rounded-3xl overflow-hidden  container mx-auto">
+			<div className="w-full md:w-3/4 flex pl-20  items-start justify-center flex-col relative top-10 md:top-0">
+				<h1 className="text-xl md:text-4xl leading-snug mb-5 text-white font-bold">
 					तुमचं शहर, तुमची कम्युनिटी <br />
 					सगळं एकाच अ‍ॅपमध्ये! <br /> लव्ह अकोट आजच डाउनलोड करा!
 				</h1>
@@ -367,24 +367,18 @@ const DownloadApp = () => {
 					href="https://play.google.com/store/apps/details?id=com.loveakot.android&pcampaignid=web_share"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="mb-4 md:mb-0"
 				>
 					<button className="flex gap-2 bg-[#02123f] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-white hover:text-black transition-all duration-300">
 						<Download /> <span className="mt-1">डाउनलोड करा</span>
 					</button>
 				</a>
 			</div>
-			<div className="w-full md:w-auto relative md:left-[0%] md:bottom-[20%] flex justify-center">
-				<img
-					src={footer}
-					alt="footer"
-					className="w-[80%] md:w-[100%] object-contain md:object-cover"
-				/>
+			<div className="relative w-full left-[0%] bottom-[-40px]  md:bottom-[10%] ">
+				<img src={footer} alt="footer" className="w-[100%] object-cover" />
 			</div>
 		</div>
 	);
 };
-
 // Main Component
 const Home = () => {
 	return (
