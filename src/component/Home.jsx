@@ -20,14 +20,53 @@ const NAV_ITEMS = [
 ];
 
 const elements = [
-	{ text: "market", image: require("../assets/features/7.png") },
-	{ text: "times", image: require("../assets/features/5.png") },
+	{
+		text: "लव्ह आकोट बाजार",
+		description:
+			"शहरातील बाजारपेठांची संपूर्ण माहिती मिळवा. किराणा, कपडे, इलेक्ट्रॉनिक्स आणि विविध दुकाने यांचे लोकेशन, वेळा आणि ऑफर्स येथे उपलब्ध आहेत.",
+		image: require("../assets/features/7.png"),
+	},
+	{
+		text: "लव्ह आकोट जीवनदाता",
+		description:
+			"रक्तदान आणि आरोग्य सेवांबाबत महत्त्वाची माहिती. कोणत्या ठिकाणी रक्ताची गरज आहे, कोणत्या रुग्णालयात ब्लड बँक आहे, आणि आपत्कालीन आरोग्य सुविधा.",
 
-	{ text: "nagarpalika", image: require("../assets/features/2.png") },
-	{ text: "jivandata", image: require("../assets/features/3.png") },
-	{ text: "gupshup", image: require("../assets/features/6.png") },
-	{ text: "bajarbhav", image: require("../assets/features/4.png") },
-	{ text: "emergency", image: require("../assets/features/1.png") },
+		image: require("../assets/features/5.png"),
+	},
+	{
+		text: "लव्ह आकोट टाइम्स",
+		description:
+			"नवीनतम स्थानिक आणि राष्ट्रीय बातम्या येथे वाचा. तुमच्या शहरातील घडामोडी, सरकारी निर्णय, तसेच ताज्या सामाजिक, आर्थिक आणि राजकीय बातम्या मिळवा.",
+
+		image: require("../assets/features/2.png"),
+	},
+	{
+		text: "लव्ह आकोट आपत्कालीन सेवा",
+		description:
+			"तत्काळ मदतीसाठी आपत्कालीन संपर्क क्रमांक. पोलीस, रुग्णवाहिका, अग्निशमन दल, वीज पुरवठा समस्या, वीज खंडीत झाल्यास तक्रार आणि इतर तातडीच्या सेवांची माहिती.",
+
+		image: require("../assets/features/3.png"),
+	},
+	{
+		text: "लव्ह आकोट बाजारभाव",
+		description:
+			"कृषी उत्पन्न आणि बाजारभाव अद्ययावत माहिती. शेतकरी व व्यापारी यांच्यासाठी सध्याचे शेतीमालाचे दर, बाजारात माल विक्रीचे अपडेट्स आणि इतर महत्त्वाची माहिती.",
+
+		image: require("../assets/features/6.png"),
+	},
+	{
+		text: "लव्ह आकोट नगरपालिका",
+		description:
+			"शहराच्या नागरी सुविधा आणि सेवांची माहिती. पाणीपुरवठा, कचरा व्यवस्थापन, कर भरपाई, रस्ते दुरुस्ती आणि इतर नागरी सुविधांशी संबंधित अपडेट्स.",
+		image: require("../assets/features/4.png"),
+	},
+	{
+		text: "लव्ह आकोट गप्पागोष्टी",
+		description:
+			"स्थानिक समुदाय आणि चर्चासत्रांसाठी एक विशेष विभाग. आपल्या परिसरातील विविध विषयांवर चर्चा करा, नवीन मित्र जोडा आणि समाजात सक्रिय सहभाग घ्या.",
+
+		image: require("../assets/features/1.png"),
+	},
 ];
 
 const marqueeElements = [
@@ -185,7 +224,7 @@ const HeroSection = () => (
 			<img
 				src={bgImage}
 				alt="Background illustration"
-				className="w-[80%] sm:w-[70%] md:w-[50%] object-contain"
+				className="w-[90%] sm:w-[70%] md:w-[50%] object-contain"
 			/>
 		</div>
 	</section>
@@ -233,7 +272,7 @@ const AboutSection = () => (
 const FeaturesSection = () => (
 	<section
 		id="features"
-		className="my-12 sm:my-20 py-12 sm:py-20 text-center mx-auto bg-[#e2e1fc5d]"
+		className="my-12 sm:my-20 py-12 sm:py-20 mx-auto bg-[#e2e1fc5d]"
 	>
 		<h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 text-center px-4">
 			लव्ह आकोटची खास वैशिष्ट्ये
@@ -241,13 +280,12 @@ const FeaturesSection = () => (
 		<h2 className="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 text-center px-4">
 			आमच्या अ‍ॅपमधील उपयुक्त आणि अनोखी फिचर्स जाणून घ्या
 		</h2>
-
 		<div className="flex justify-center items-center mt-6 sm:mt-8 mx-auto container ">
 			<div className="flex flex-col md:flex-row w-auto place-items-center">
 				{elements.slice(0, 4).map(({ image, text }, index) => (
 					<div
 						key={index}
-						className={`flex flex-col items-center text-center ${
+						className={`flex flex-col items-center text-center  ${
 							!image ? "hidden" : ""
 						}`}
 					>
@@ -262,7 +300,6 @@ const FeaturesSection = () => (
 				))}
 			</div>
 		</div>
-
 		<div className="flex justify-center items-center mt-3 sm:mt-8 mx-auto container ">
 			<div className="flex flex-col md:flex-row md:gap-6 w-auto place-items-center">
 				{elements.slice(4, 7).map(({ image, text }, index) => (
@@ -282,6 +319,28 @@ const FeaturesSection = () => (
 					</div>
 				))}
 			</div>
+		</div>
+		<div className="container mx-auto grid md:grid-cols-4 mb-4 gap-4 mt-16 px-4 md:px-0">
+			{elements.slice(0, 4).map((element, index) => (
+				<div
+					key={index}
+					className="flex flex-col rounded-2xl bg-white border border-gray-300 p-12 hover:bg-[#6f40ff] text-black hover:text-white transition-all duration-500"
+				>
+					<h1 className="text-2xl font-semibold mb-3">{element.text}</h1>
+					<p className="text-base font-light  ">{element.description}</p>
+				</div>
+			))}
+		</div>
+		<div className="container mx-auto grid md:grid-cols-3 gap-4">
+			{elements.slice(4, 8).map((element, index) => (
+				<div
+					key={index}
+					className="flex flex-col rounded-2xl bg-white border border-gray-300 p-12 hover:bg-[#6f40ff] text-black hover:text-white transition-all duration-500"
+				>
+					<h1 className="text-2xl font-semibold mb-3">{element.text}</h1>
+					<p className="text-base font-light ">{element.description}</p>
+				</div>
+			))}
 		</div>
 	</section>
 );
@@ -318,12 +377,14 @@ function FAQ() {
 
 	return (
 		<div className="container mx-auto p-4" id="contact">
-			<h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 text-center">
-				सर्वाधिक विचारले जाणारे प्रश्न
-			</h2>
-			<h2 className="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 text-center">
-				तुमच्या शंका दूर करण्यासाठी काही सामान्य प्रश्न व उत्तरे
-			</h2>
+			<div>
+				<h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 text-center">
+					सर्वाधिक विचारले जाणारे प्रश्न
+				</h2>
+				<h2 className="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 text-center">
+					तुमच्या शंका दूर करण्यासाठी काही सामान्य प्रश्न व उत्तरे
+				</h2>
+			</div>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
 				{faqs.map((faq, index) => (
 					<FAQItem
@@ -384,17 +445,11 @@ const Footer = () => {
 							className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px]"
 						/>
 					</a>
-					<a
-						href="https://www.instagram.com/love.akot/"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<img
-							src={youtube}
-							alt="यूट्यूब"
-							className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px]"
-						/>
-					</a>
+					{/* <img
+						src={youtube}
+						alt="यूट्यूब"
+						className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px]"
+					/> */}
 					<a
 						href="https://www.facebook.com/loveAkot"
 						target="_blank"
@@ -412,7 +467,7 @@ const Footer = () => {
 			<hr className="w-full mx-auto border-gray-200" />
 			<div className="text-sm sm:text-base text-gray-600 py-4 flex flex-col lg:flex-row justify-between items-center">
 				<div>
-					<p>@2025 सर्व हक्क राखीव</p>
+					<p>Love Akot @2025. </p>
 				</div>
 				<div className="flex gap-4 lg:gap-9 mt-4 lg:mt-0">
 					<Link to={"/terms-and-conditions"}>
