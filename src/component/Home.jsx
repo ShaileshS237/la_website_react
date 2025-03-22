@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Download, Minus, Plus } from "lucide-react";
+import { Download, Menu, Minus, Plus, X } from "lucide-react";
 import logo from "../assets/la_logo.png";
 import bgImage from "../assets/bg-2.png";
 import "../App.css";
@@ -79,50 +79,92 @@ const faqs = [
 
 // Components
 const NavBar = () => {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 	const handleScroll = (id) => {
 		const section = document.getElementById(id);
 		if (section) {
 			section.scrollIntoView({ behavior: "smooth" });
 		}
+		setIsMenuOpen(false); // Close menu on navigation
 	};
 
 	return (
-		<nav className="text-black">
-			<div className="container mx-auto bg-white shadow-sm px-8 py-4 rounded-full flex justify-between items-center">
-				<img src={logo} alt="logo" className="w-40 mb-2 mr-2" loading="lazy" />
-				<ul className="flex space-x-6">
+		<nav className="text-black px-4">
+			<div className="container mx-auto bg-white shadow-sm px-4 sm:px-8 py-4 rounded-full flex justify-between items-center">
+				<img
+					src={logo}
+					alt="logo"
+					className="w-28 sm:w-40 mb-2 mr-2"
+					loading="lazy"
+				/>
+				<div className="hidden md:flex space-x-6">
 					{NAV_ITEMS.map(({ id, label }) => (
-						<li key={id}>
-							<button
-								onClick={() => handleScroll(id)}
-								className="focus:outline-none"
-							>
-								{label}
-							</button>
-						</li>
+						<button
+							key={id}
+							onClick={() => handleScroll(id)}
+							className="focus:outline-none"
+						>
+							{label}
+						</button>
 					))}
-				</ul>
+				</div>
 				<a
 					href="https://play.google.com/store/apps/details?id=com.loveakot.android&pcampaignid=web_share"
 					target="_blank"
 					rel="noopener noreferrer"
+					className="hidden md:flex"
 				>
 					<button className="flex gap-2 bg-[#02123f] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-[#6968ad] transition-all duration-300">
 						<Download /> <span className="mt-1">आताच डाउनलोड करा</span>
 					</button>
 				</a>
+				{/* Mobile Menu Toggle */}
+				<button
+					className="md:hidden focus:outline-none"
+					onClick={() => setIsMenuOpen(!isMenuOpen)}
+				>
+					{isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+				</button>
 			</div>
+			{/* Mobile Menu */}
+			{isMenuOpen && (
+				<div className="md:hidden bg-white shadow-md rounded-lg mt-2 mx-1 p-4 z-50 relative">
+					<ul className="space-y-4">
+						{NAV_ITEMS.map(({ id, label }) => (
+							<li key={id}>
+								<button
+									onClick={() => handleScroll(id)}
+									className="focus:outline-none w-full text-left"
+								>
+									{label}
+								</button>
+							</li>
+						))}
+					</ul>
+					<a
+						href="https://play.google.com/store/apps/details?id=com.loveakot.android&pcampaignid=web_share"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="block mt-4"
+					>
+						<button className="flex gap-2 bg-[#02123f] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-[#6968ad] transition-all duration-300 w-full justify-center">
+							<Download /> <span className="mt-1">आताच डाउनलोड करा</span>
+						</button>
+					</a>
+				</div>
+			)}
 		</nav>
 	);
 };
 
 const HeroSection = () => (
-	<section className="text-white pt-12 text-center">
-		<h1 className="text-7xl font-bold">
+	<section className="text-white pt-6 sm:pt-12 text-center px-4">
+		<h1 className="text-4xl sm:text-5xl md:text-7xl font-bold">
 			<span className="text-[#02123f]">आकोटला </span>
 			<br /> अनुभवा नव्या रूपात!
 		</h1>
-		<p className="text-xl mt-2">
+		<p className="text-base sm:text-xl mt-2 px-2">
 			आकोट शहराची पहिली हायपरलोकल अ‍ॅप सेवा! <br /> लव्ह अकोट मधून मिळवा ताज्या
 			घडामोडी, स्थानिक व्यवसाय, इव्हेंट्स आणि शहरातील महत्त्वाची माहिती <br />{" "}
 			अगदी एका क्लिकवर!
@@ -131,7 +173,7 @@ const HeroSection = () => (
 			<img
 				src={bgImage}
 				alt="Background illustration"
-				className="w-[50%] object-contain"
+				className="w-[80%] sm:w-[70%] md:w-[50%] object-contain"
 			/>
 		</div>
 	</section>
@@ -140,32 +182,35 @@ const HeroSection = () => (
 const FeaturesSection = () => (
 	<section
 		id="features"
-		className="my-20 py-20 text-center  mx-auto bg-[#e2e1fc5d]"
+		className="my-12 sm:my-20 py-12 sm:py-20 text-center mx-auto bg-[#e2e1fc5d]"
 	>
-		<h2 className="text-3xl font-bold text-gray-800 mb-1 text-center">
+		<h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 text-center px-4">
 			लव्ह अकोटची खास वैशिष्ट्ये
 		</h2>
-		<h2 className="text-lg text-gray-500 mb-8 text-center">
+		<h2 className="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 text-center px-4">
 			आमच्या अ‍ॅपमधील उपयुक्त आणि अनोखी फिचर्स जाणून घ्या
 		</h2>
 
-		<div className="flex flex-wrap justify-center gap-6 mt-8 mx-auto container">
-			<div className="flex w-full justify-center gap-8">
+		<div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-6 sm:mt-8 mx-auto container px-4">
+			<div className="flex flex-wrap justify-center gap-4 sm:gap-8 w-full">
 				{elements.slice(0, 4).map(({ image, text }, index) => (
-					<div key={index} className="flex flex-col items-center text-center">
+					<div
+						key={index}
+						className="flex flex-col items-center text-center w-[40%] sm:w-[20%]"
+					>
 						<img
 							src={image}
 							alt={text}
-							className="w-[100%] object-contain filter grayscale hover:filter-none transition-all duration-700"
+							className="w-full object-contain filter grayscale hover:filter-none transition-all duration-700"
 						/>
 					</div>
 				))}
 			</div>
-			<div className="flex justify-center gap-6 w-full pb-5">
+			<div className="flex justify-center gap-4 sm:gap-6 w-full pb-5 mt-4">
 				{elements.slice(4, 6).map(({ image, text }, index) => (
 					<div
 						key={index}
-						className="flex flex-col items-center text-center w-[24%]"
+						className="flex flex-col items-center text-center w-[40%] sm:w-[24%]"
 					>
 						<img
 							src={image}
@@ -180,9 +225,9 @@ const FeaturesSection = () => (
 );
 
 const AboutSection = () => (
-	<section id="about" className="mt-20 text-center">
+	<section id="about" className="mt-12 sm:mt-20 text-center px-4">
 		<motion.h2
-			className="text-3xl font-bold text-gray-800 mb-1 text-center"
+			className="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 text-center"
 			initial={{ opacity: 0, y: 20 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.8, ease: "easeOut" }}
@@ -191,7 +236,7 @@ const AboutSection = () => (
 			लव्ह अकोट बद्दल
 		</motion.h2>
 		<motion.h2
-			className="text-lg text-gray-500 mb-8 text-center"
+			className="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 text-center"
 			initial={{ opacity: 0, y: 20 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.8, ease: "easeOut" }}
@@ -200,7 +245,7 @@ const AboutSection = () => (
 			आमच्या समुदाय-आधारित अ‍ॅपविषयी जाणून घ्या
 		</motion.h2>
 		<motion.p
-			className="w-[50%] text-3xl font-semibold mx-auto leading-[180%] text-gray-700"
+			className="w-full sm:w-[80%] md:w-[50%] text-xl sm:text-2xl md:text-3xl font-semibold mx-auto leading-[160%] sm:leading-[180%] text-gray-700"
 			initial={{ opacity: 0, y: 50 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.8, ease: "easeOut" }}
@@ -221,19 +266,21 @@ const AboutSection = () => (
 function FAQItem({ faq, isOpen, onClick }) {
 	return (
 		<div
-			className="cursor-pointer p-4 border rounded-xl transition-all duration-300"
+			className="cursor-pointer p-3 sm:p-4 border rounded-xl transition-all duration-300"
 			onClick={onClick}
 		>
 			<div className="flex justify-between items-center">
-				<h3 className="text-lg font-semibold">{faq.question}</h3>
+				<h3 className="text-base sm:text-lg font-semibold pr-2">
+					{faq.question}
+				</h3>
 				{isOpen ? <Minus size={20} /> : <Plus size={20} />}
 			</div>
 			<div
 				className={`overflow-hidden transition-all duration-300 ease-in-out ${
-					isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+					isOpen ? "max-h-[500px] opacity-100 mt-2" : "max-h-0 opacity-0"
 				}`}
 			>
-				<p className="mt-2 text-gray-700">{faq.answer}</p>
+				<p className="text-sm sm:text-base text-gray-700">{faq.answer}</p>
 			</div>
 		</div>
 	);
@@ -247,14 +294,14 @@ function FAQ() {
 	};
 
 	return (
-		<div className="container mx-auto p-4">
-			<h2 className="text-3xl font-bold text-gray-800 mb-1 text-center">
+		<div className="container mx-auto p-4" id="contact">
+			<h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 text-center">
 				सर्वाधिक विचारले जाणारे प्रश्न
 			</h2>
-			<h2 className="text-lg text-gray-500 mb-8 text-center">
+			<h2 className="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 text-center">
 				तुमच्या शंका दूर करण्यासाठी काही सामान्य प्रश्न व उत्तरे
 			</h2>
-			<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
 				{faqs.map((faq, index) => (
 					<FAQItem
 						key={index}
@@ -270,32 +317,32 @@ function FAQ() {
 
 const Footer = () => {
 	return (
-		<div className="container mx-auto mt-10">
+		<div className="container mx-auto mt-10 px-4">
 			<div className="py-4 flex flex-col lg:flex-row justify-between items-center">
-				<div className="mb-4 lg:mb-0 flex lg:grid justify-center">
+				<div className="mb-4 lg:mb-0 flex justify-center w-full lg:w-auto">
 					<img src={logo} alt="logo" className="w-[40%] lg:w-[20%]" />
 				</div>
 				<div className="flex gap-4 lg:gap-5 items-center">
 					<img
 						src={instagram}
 						alt="Instagram"
-						className="w-[40px] lg:w-[40px] h-[40px] lg:h-[40px]"
+						className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px]"
 					/>
 					<img
 						src={youtube}
 						alt="YouTube"
-						className="w-[40px] lg:w-[40px] h-[40px] lg:h-[40px]"
+						className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px]"
 					/>
 					<img
 						src={facebook}
 						alt="Facebook"
-						className="w-[40px] lg:w-[40px] h-[40px] lg:h-[40px]"
+						className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px]"
 					/>
 				</div>
 			</div>
 
 			<hr className="w-full mx-auto border-gray-200" />
-			<div className=" text-gray-600 py-4 flex flex-col lg:flex-row justify-between items-center">
+			<div className="text-sm sm:text-base text-gray-600 py-4 flex flex-col lg:flex-row justify-between items-center">
 				<div>
 					<p>@2025 All Rights Reserved</p>
 				</div>
@@ -310,9 +357,9 @@ const Footer = () => {
 
 const DownloadApp = () => {
 	return (
-		<div className="flex h-[400px] my-16 bg-[#6f40ff] rounded-3xl overflow-hidden relative container mx-auto">
-			<div className="w-3/4 flex pl-20  items-start justify-center flex-col">
-				<h1 className="text-4xl leading-snug mb-5 text-white font-bold">
+		<div className="flex flex-col md:flex-row h-auto md:h-[400px] my-10 sm:my-16 bg-[#6f40ff] rounded-3xl overflow-hidden relative container mx-auto px-4">
+			<div className="w-full md:w-3/4 flex px-6 md:pl-20 py-8 md:py-0 items-start justify-center flex-col">
+				<h1 className="text-2xl sm:text-3xl md:text-4xl leading-snug mb-5 text-white font-bold">
 					तुमचं शहर, तुमची कम्युनिटी <br />
 					सगळं एकाच अ‍ॅपमध्ये! <br /> लव्ह अकोट आजच डाउनलोड करा!
 				</h1>
@@ -320,14 +367,19 @@ const DownloadApp = () => {
 					href="https://play.google.com/store/apps/details?id=com.loveakot.android&pcampaignid=web_share"
 					target="_blank"
 					rel="noopener noreferrer"
+					className="mb-4 md:mb-0"
 				>
 					<button className="flex gap-2 bg-[#02123f] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-white hover:text-black transition-all duration-300">
 						<Download /> <span className="mt-1">डाउनलोड करा</span>
 					</button>
 				</a>
 			</div>
-			<div className="relative left-[0%] bottom-[20%] ">
-				<img src={footer} alt="footer" className="w-[100%] object-cover" />
+			<div className="w-full md:w-auto relative md:left-[0%] md:bottom-[20%] flex justify-center">
+				<img
+					src={footer}
+					alt="footer"
+					className="w-[80%] md:w-[100%] object-contain md:object-cover"
+				/>
 			</div>
 		</div>
 	);
@@ -339,7 +391,7 @@ const Home = () => {
 		<div className="App">
 			<div
 				id="home"
-				className="h-screen py-5 relative bg-gradient-to-b from-[#6f40ff] to-transparent overflow-hidden"
+				className="h-[540px] md:h-screen py-5 relative bg-gradient-to-b from-[#6f40ff] to-transparent overflow-hidden"
 			>
 				<NavBar />
 				<HeroSection />
@@ -349,9 +401,15 @@ const Home = () => {
 				<hr className="w-full mx-auto border-gray-400" />
 				<Marquee className="marquee">
 					{marqueeElements.map((element, index) => (
-						<div key={index} className="flex gap-[10rem] mx-4">
-							<img src={astrick} alt="Asterisk" className="h-[20px] w-[20px]" />
-							<h1 className="text-2xl mr-[10rem]">{element.text}</h1>
+						<div key={index} className="flex gap-4 sm:gap-[10rem] mx-2 sm:mx-4">
+							<img
+								src={astrick}
+								alt="Asterisk"
+								className="h-[15px] w-[15px] sm:h-[20px] sm:w-[20px]"
+							/>
+							<h1 className="text-lg sm:text-2xl mr-4 sm:mr-[10rem]">
+								{element.text}
+							</h1>
 						</div>
 					))}
 				</Marquee>
