@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../assets/newla_logo_white.png";
-
+import { Link } from "react-router-dom";
 const PrivacyPolicy = () => {
 	return (
 		<div className="App">
@@ -8,7 +8,9 @@ const PrivacyPolicy = () => {
 				id="home"
 				className="pt-3 pb-5 md:px-96 px-3  bg-[#6f40ff] text-white"
 			>
-				<img src={logo} className="w-1/2 md:w-1/5" alt="" />
+				<Link to={"/"}>
+					<img src={logo} className="w-1/2 md:w-1/5" alt="" />
+				</Link>
 			</div>
 			<div className="md:px-96 py-6  px-4">
 				<h1 className="text-3xl font-bold">Privacy Policy</h1>
