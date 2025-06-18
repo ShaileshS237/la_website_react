@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&family=Cairo:wght@200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 
 * {
-	font-family: "Anek Devanagari", sans-serif;
+	font-family: "Manrope", sans-serif;
 }
 
 body {
@@ -41,6 +41,7 @@ body {
 	from {
 		transform: rotate(0deg);
 	}
+
 	to {
 		transform: rotate(360deg);
 	}
@@ -60,9 +61,11 @@ body {
 
 .marquee {
 	height: 70px;
+
 	h1 {
 		/* font-size: 40px; */
 	}
+
 	img {
 		margin: "0 20px";
 	}

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Download, Menu, Minus, Plus, X } from "lucide-react";
 import logo from "../assets/la_logo.png";
@@ -10,112 +9,109 @@ import facebook from "../assets/facebook.png";
 import instagram from "../assets/instagram.png";
 import footer from "../assets/footerpng.png";
 import { Link } from "react-router-dom";
+import { useInView } from "framer-motion";
+import React, { useState, useRef, useEffect } from "react";
 
 const NAV_ITEMS = [
-	{ id: "home", label: "मुख्यपृष्ठ" },
-	{ id: "about", label: "आमच्याबद्दल" },
-	{ id: "features", label: "वैशिष्ट्ये" },
-	{ id: "contact", label: "संपर्क" },
+	{ id: "home", label: "Home" },
+	{ id: "about", label: "About" },
+	{ id: "features", label: "Features" },
+	{ id: "contact", label: "Contact" },
 ];
 
 const elements = [
 	{
-		text: "लव्ह आकोट मार्केट",
+		text: "Love Akot Market",
 		description:
-			"शहरातील बाजारपेठांची संपूर्ण माहिती मिळवा. किराणा, कपडे, इलेक्ट्रॉनिक्स आणि विविध दुकाने यांचे लोकेशन, वेळा आणि ऑफर्स येथे उपलब्ध आहेत.",
+			"Get complete information about the city's marketplaces. Locate grocery stores, clothing shops, electronics outlets, and various other stores along with their timings and offers.",
 		image: require("../assets/features/7.png"),
 	},
 	{
-		text: "लव्ह आकोट जीवनदाता",
+		text: "Love Akot Jivandata",
 		description:
-			"रक्तदान आणि आरोग्य सेवांबाबत महत्त्वाची माहिती. कोणत्या ठिकाणी रक्ताची गरज आहे, कोणत्या रुग्णालयात ब्लड बँक आहे, आणि आपत्कालीन आरोग्य सुविधा.",
-
+			"Important details on blood donation and healthcare services. Find out where blood is needed, which hospitals have blood banks, and access emergency health services.",
 		image: require("../assets/features/5.png"),
 	},
 	{
-		text: "लव्ह आकोट टाइम्स",
+		text: "Love Akot Times",
 		description:
-			"नवीनतम स्थानिक आणि राष्ट्रीय बातम्या येथे वाचा. तुमच्या शहरातील घडामोडी, सरकारी निर्णय, तसेच ताज्या सामाजिक, आर्थिक आणि राजकीय बातम्या मिळवा.",
-
+			"Read the latest local and national news here. Stay updated with your city's events, government decisions, and trending social, economic, and political news.",
 		image: require("../assets/features/2.png"),
 	},
 	{
-		text: "लव्ह आकोट सहायता",
+		text: "Love Akot Sahayata",
 		description:
-			"तत्काळ मदतीसाठी आपत्कालीन संपर्क क्रमांक. पोलीस, रुग्णवाहिका, अग्निशमन दल, वीज पुरवठा समस्या, वीज खंडीत झाल्यास तक्रार आणि इतर तातडीच्या सेवांची माहिती.",
-
+			"Emergency contacts for immediate help. Includes information for police, ambulance services, fire brigades, power outages, and other urgent services.",
 		image: require("../assets/features/3.png"),
 	},
 	{
-		text: "लव्ह आकोट बाजारभाव",
+		text: "Love Akot Prices",
 		description:
-			"कृषी उत्पन्न आणि बाजारभाव अद्ययावत माहिती. शेतकरी व व्यापारी यांच्यासाठी सध्याचे शेतीमालाचे दर, बाजारात माल विक्रीचे अपडेट्स आणि इतर महत्त्वाची माहिती.",
-
+			"Get updated information on agricultural yields and market prices. Check current rates for produce, sale updates, and other key financial details for farmers and traders.",
 		image: require("../assets/features/6.png"),
 	},
 	{
-		text: "लव्ह आकोट नागरीसमस्या",
+		text: "Love Akot Nagarisamsya",
 		description:
-			"शहराच्या नागरी सुविधा आणि सेवांची माहिती. पाणीपुरवठा, कचरा व्यवस्थापन, कर भरपाई, रस्ते दुरुस्ती आणि इतर नागरी सुविधांशी संबंधित अपडेट्स.",
+			"Information on the city's civic amenities and services. Learn about water supply, waste management, tax payments, road repairs, and other civic updates.",
 		image: require("../assets/features/4.png"),
 	},
 	{
-		text: "लव्ह आकोट गपशप",
+		text: "Love Akot Gupshup",
 		description:
-			"स्थानिक समुदाय आणि चर्चासत्रांसाठी एक विशेष विभाग. आपल्या परिसरातील विविध विषयांवर चर्चा करा, नवीन मित्र जोडा आणि समाजात सक्रिय सहभाग घ्या.",
-
+			"A dedicated section for community discussions and forums. Connect with local residents on various topics, make new friends, and actively participate in your community.",
 		image: require("../assets/features/1.png"),
 	},
 ];
 
 const marqueeElements = [
-	{ text: "लोकांसाठी", image: "./assets/astrick.png" },
-	{ text: "लोकांद्वारे", image: "./assets/astrick.png" },
-	{ text: "लोकांसाठी", image: "./assets/astrick.png" },
-	{ text: "लोकांद्वारे", image: "./assets/astrick.png" },
-	{ text: "लोकांसाठी", image: "./assets/astrick.png" },
-	{ text: "लोकांद्वारे", image: "./assets/astrick.png" },
+	{ text: "For the people", image: "./assets/astrick.png" },
+	{ text: "By the people", image: "./assets/astrick.png" },
+	{ text: "For the people", image: "./assets/astrick.png" },
+	{ text: "By the people", image: "./assets/astrick.png" },
+	{ text: "For the people", image: "./assets/astrick.png" },
+	{ text: "By the people", image: "./assets/astrick.png" },
 ];
 
 const faqs = [
 	{
-		question: "लव्ह आकोट अ‍ॅप म्हणजे काय?",
+		question: "What is the Love Akot app?",
 		answer:
-			"लव्ह आकोट हे एक हायपरलोकल समुदाय-आधारित अ‍ॅप आहे, जे आपल्या शहराशी संबंधित विविध सेवा आणि माहिती पुरवते.",
+			"Love Akot is a hyperlocal community-based app that provides various services and information related to your city.",
 	},
 	{
-		question: "लव्ह आकोट अ‍ॅप कोणत्या सेवा देते?",
+		question: "Which services does the Love Akot app offer?",
 		answer:
-			"हे अ‍ॅप स्थानिक बातम्या, व्यवसाय माहिती, इव्हेंट्स, जॉब अपडेट्स आणि इतर अनेक सुविधा देते.",
+			"This app offers local news, business details, events, job updates, and many other features.",
 	},
 	{
-		question: "लव्ह आकोट अ‍ॅप डाउनलोड कसे करायचे?",
+		question: "How do I download the Love Akot app?",
 		answer:
-			"तुम्ही Google Play Store वर जाऊन 'लव्ह आकोट' असे शोधून अ‍ॅप डाउनलोड करू शकता.",
+			"You can download the app by searching for 'Love Akot' on the Google Play Store.",
 	},
 	{
-		question: "लव्ह आकोट वर व्यवसाय लिस्टिंग कसे करायचे?",
+		question: "How do I list my business on Love Akot?",
 		answer:
-			"अ‍ॅपमध्ये 'व्यवसाय जोडा' पर्यायावर क्लिक करून आपला व्यवसाय सहज नोंदणी करू शकता.",
+			"Simply click on the 'Add Business' option within the app to register your business.",
 	},
 	{
-		question: "लव्ह आकोट अ‍ॅप वापरण्यास मोफत आहे का?",
+		question: "Is the Love Akot app free?",
 		answer:
-			"होय! लव्ह आकोट अ‍ॅप मोफत आहे, काही प्रीमियम सेवा भविष्यात उपलब्ध होऊ शकतात.",
+			"Yes! The Love Akot app is free, although some premium features might be available in the future.",
 	},
 	{
-		question: "लव्ह आकोट मध्ये स्थानिक जाहिराती कशा प्रकाशित करायच्या?",
-		answer: "अ‍ॅपमध्ये जाहिरात विभागात जाऊन तुमची जाहिरात अपलोड करू शकता.",
+		question: "How do I publish local advertisements on Love Akot?",
+		answer: "Head to the advertisement section in the app and upload your ad.",
 	},
 	{
-		question: "लव्ह आकोट मध्ये कोणत्या प्रकारची माहिती मिळू शकते?",
+		question: "What kind of information can I find on Love Akot?",
 		answer:
-			"तुम्हाला शहरातील महत्त्वाच्या बातम्या, ऑफर्स, जॉब अपडेट्स आणि स्थानिक इव्हेंट्स यांची माहिती मिळेल.",
+			"You can get important news updates, special offers, job alerts, and details on local events.",
 	},
 	{
-		question: "लव्ह आकोट ला सपोर्टसाठी कसा संपर्क साधावा?",
+		question: "How can I contact support for Love Akot?",
 		answer:
-			"अ‍ॅपमध्ये दिलेल्या 'संपर्क करा' विभागात जाऊन तुम्ही आमच्याशी संपर्क करू शकता.",
+			"Visit the 'Contact Us' section in the app to get in touch with our team.",
 	},
 ];
 
@@ -132,45 +128,66 @@ const NavBar = () => {
 	};
 
 	return (
-		<nav className="text-black px-4 absolute z-50 w-full">
-			<div className="container mx-auto bg-white shadow-sm px-4 sm:px-8 py-4 rounded-full flex justify-between items-center">
-				<img
-					src={logo}
-					alt="logo"
-					className="w-28 sm:w-40 mb-2 mr-2"
-					loading="lazy"
-				/>
+		<nav className="text-black absolute z-50 w-[60%] flex justify-center">
+			<motion.div
+				initial={{ y: -50, opacity: 0 }}
+				animate={{ y: 0, opacity: 1 }}
+				transition={{ duration: 0.5, ease: "easeOut" }}
+				className="container mx-auto bg-white shadow-sm px-2 sm:px-2 py-2 rounded-full flex justify-between items-center"
+			>
+				{/* Logo Section */}
+				<div className="relative pl-5">
+					<img
+						src={logo}
+						alt="logo"
+						className="w-28 sm:w-40 mb-2 mr-2"
+						loading="lazy"
+					/>
+					<span className="absolute -top-1 -right-7 text-black text-xs px-1.5 py-0.5 rounded-md font-light ">
+						Beta
+					</span>
+				</div>
+
+				{/* Desktop Nav Items */}
 				<div className="hidden md:flex space-x-6">
 					{NAV_ITEMS.map(({ id, label }) => (
-						<button
+						<motion.button
 							key={id}
 							onClick={() => handleScroll(id)}
 							className="focus:outline-none"
+							whileHover={{ scale: 1.1 }}
+							whileTap={{ scale: 0.95 }}
 						>
 							{label}
-						</button>
+						</motion.button>
 					))}
 				</div>
+
+				{/* Download Button Desktop */}
 				<a
 					href="https://play.google.com/store/apps/details?id=com.loveakot.android&pcampaignid=web_share"
 					target="_blank"
 					rel="noopener noreferrer"
 					className="hidden md:flex"
 				>
-					<button className="flex gap-2 bg-[white] text-black border-[1px] border-black px-6 py-3 rounded-full hover:text-white text-lg font-bold hover:bg-[#02123f] transition-all duration-300">
-						<Download /> <span className="mt-1">आताच डाउनलोड करा</span>
-					</button>
+					<motion.button
+						className="flex gap-2 border-[1px] border-black px-6 py-3 rounded-full text-white text-lg font-bold bg-[#02123f] "
+
+					>
+						<Download /> <span >Download Now</span>
+					</motion.button>
 				</a>
-				{/* Mobile Menu Toggle */}
+
+				{/* Mobile Toggle Button */}
 				<button
 					className="md:hidden focus:outline-none"
 					onClick={() => setIsMenuOpen(!isMenuOpen)}
 				>
 					{isMenuOpen ? <X size={24} /> : <Menu size={24} />}
 				</button>
-			</div>
+			</motion.div>
 
-			{/* Mobile Menu with Smooth Animation */}
+			{/* Mobile Menu */}
 			<AnimatePresence>
 				{isMenuOpen && (
 					<motion.div
@@ -183,12 +200,14 @@ const NavBar = () => {
 						<ul className="space-y-4">
 							{NAV_ITEMS.map(({ id, label }) => (
 								<li key={id}>
-									<button
+									<motion.button
 										onClick={() => handleScroll(id)}
 										className="focus:outline-none w-full text-left"
+										whileHover={{ scale: 1.02 }}
+										whileTap={{ scale: 0.95 }}
 									>
 										{label}
-									</button>
+									</motion.button>
 								</li>
 							))}
 						</ul>
@@ -198,35 +217,80 @@ const NavBar = () => {
 							rel="noopener noreferrer"
 							className="block mt-4"
 						>
-							<button className="flex gap-2 bg-[#02123f] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-[#6968ad] transition-all duration-300 w-full justify-center">
-								<Download /> <span className="mt-1">आताच डाउनलोड करा</span>
-							</button>
+							<motion.button
+								className="flex gap-2 bg-[#02123f] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-[#6968ad] transition-all duration-300 w-full justify-center"
+								whileHover={{ scale: 1.05 }}
+								whileTap={{ scale: 0.95 }}
+							>
+								<Download /> <span className="mt-1">Download Now!</span>
+							</motion.button>
 						</a>
 					</motion.div>
 				)}
 			</AnimatePresence>
-		</nav>
+
+		</nav >
+
 	);
 };
 const HeroSection = () => (
-	<section className="text-white pt-6 sm:pt-12 text-center px-4">
-		<h1 className="text-4xl sm:text-5xl md:text-7xl font-bold">
-			<span className="text-[#02123f]">आकोटला </span>
-			<br /> अनुभवा नव्या रूपात!
-		</h1>
-		<p className="text-base sm:text-xl mt-2 px-2">
-			आकोट शहराची पहिली हायपरलोकल अ‍ॅप सेवा! <br /> लव्ह आकोट मधून मिळवा ताज्या
-			घडामोडी, स्थानिक व्यवसाय, इव्हेंट्स आणि शहरातील महत्त्वाची माहिती <br />{" "}
-			अगदी एका क्लिकवर!
-		</p>
-		<div className="flex justify-center mt-5">
+	<motion.section
+		className="pt-6 sm:pt-12 text-center px-4"
+		initial={{ opacity: 0, y: -50 }}
+		animate={{ opacity: 1, y: 0 }}
+		transition={{ duration: 0.8, ease: "easeOut" }}
+	>
+		<motion.h1
+			className="text-4xl sm:text-5xl md:text-7xl font-bold"
+			initial={{ opacity: 0, scale: 0.8 }}
+			animate={{ opacity: 1, scale: 1 }}
+			transition={{ duration: 0.8, ease: "easeOut" }}
+		>
+			<span className="text-[#02123f]">Connect, Buy, Sell & Stay Updated</span>
+			<br /> All in One Place for Akot
+		</motion.h1>
+		<motion.p
+			className="text-base sm:text-xl mt-5 px-2"
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+		>
+			A hyperlocal community app made for Akot residents. <br /> From marketplace to rentals, events to alerts — everything you need, in one app.
+		</motion.p>
+
+		<motion.div
+			className="flex justify-center my-6"
+			initial={{ opacity: 0, scale: 0.9 }}
+			animate={{ opacity: 1, scale: 1 }}
+			transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+		>
+			<a
+				href="https://www.producthunt.com/products/love-akot?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-love-akot"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<img
+					src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=963777&theme=dark&t=1750229665135"
+					alt="Love Akot - One app. One city. Infinite connections. | Product Hunt"
+					style={{ width: "250px", height: "54px" }}
+					width="250"
+					height="54"
+				/>
+			</a>
+		</motion.div>
+		<motion.div
+			className="flex justify-center mt-5"
+			initial={{ opacity: 0, y: 50 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+		>
 			<img
 				src={bgImage}
 				alt="Background illustration"
 				className="w-[90%] sm:w-[70%] md:w-[50%] object-contain"
 			/>
-		</div>
-	</section>
+		</motion.div>
+	</motion.section>
 );
 
 const AboutSection = () => (
@@ -238,7 +302,7 @@ const AboutSection = () => (
 			transition={{ duration: 0.8, ease: "easeOut" }}
 			viewport={{ once: true }}
 		>
-			लव्ह आकोट बद्दल
+			About Love Akot
 		</motion.h2>
 		<motion.h2
 			className="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 text-center"
@@ -247,7 +311,7 @@ const AboutSection = () => (
 			transition={{ duration: 0.8, ease: "easeOut" }}
 			viewport={{ once: true }}
 		>
-			आमच्या समुदाय-आधारित अ‍ॅपविषयी जाणून घ्या
+			Learn more about our community-based app
 		</motion.h2>
 		<motion.p
 			className="w-full sm:w-[80%] md:w-[50%] text-lg md:text-3xl font-semibold mx-auto leading-[160%] md:leading-[180%] text-gray-700"
@@ -256,37 +320,28 @@ const AboutSection = () => (
 			transition={{ duration: 0.8, ease: "easeOut" }}
 			viewport={{ once: true }}
 		>
-			लव्ह आकोट ही एक समुदाय-आधारित हायपरलोकल अ‍ॅप आहे जी आकोट शहरासाठी खास तयार
-			करण्यात आली आहे. या अ‍ॅपचा मुख्य उद्देश स्थानिक नागरिकांना एका ठिकाणी सर्व
-			आवश्यक माहिती व सेवा उपलब्ध करून देणे हा आहे. <br />
-			या अ‍ॅपच्या माध्यमातून आकोटमधील नागरिकांना विविध सेवा, व्यवसाय, बातम्या,
-			उपयुक्त माहिती, आणि स्थानिक इव्हेंट्स यांची माहिती मिळू शकते. लव्ह आकोट
-			अ‍ॅपद्वारे स्थानिक व्यावसायिकांना त्यांच्या उत्पादनांची व सेवांची जाहिरात
-			करण्यासाठी एक प्रभावी प्लॅटफॉर्म मिळतो, ज्यामुळे त्यांचा व्यवसाय अधिक
-			लोकांपर्यंत पोहोचतो.
+			Love Akot is a hyperlocal community-based app designed exclusively for the city of Akot. The primary goal of the app is to provide all essential information and services in one place. With Love Akot, residents can access services, business details, news, helpful information, and updates on local events. It also gives local businesses an effective platform to promote their products and services, extending their reach.
 		</motion.p>
 	</section>
 );
-
 const FeaturesSection = () => (
 	<section
 		id="features"
 		className="my-12 sm:my-20 py-12 sm:py-20 mx-auto bg-[#e2e1fc5d]"
 	>
 		<h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 text-center px-4">
-			लव्ह आकोटची खास वैशिष्ट्ये
+			Exclusive Features of Love Akot
 		</h2>
 		<h2 className="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 text-center px-4">
-			आमच्या अ‍ॅपमधील उपयुक्त आणि अनोखी फिचर्स जाणून घ्या
+			Discover the useful and unique features of our app
 		</h2>
 		<div className="flex justify-center items-center mt-6 sm:mt-8 mx-auto container ">
 			<div className="flex flex-col md:flex-row w-auto place-items-center">
 				{elements.slice(0, 4).map(({ image, text }, index) => (
 					<div
 						key={index}
-						className={`flex flex-col items-center text-center  ${
-							!image ? "hidden" : ""
-						}`}
+						className={`flex flex-col items-center text-center  ${!image ? "hidden" : ""
+							}`}
 					>
 						{image && (
 							<img
@@ -304,9 +359,8 @@ const FeaturesSection = () => (
 				{elements.slice(4, 7).map(({ image, text }, index) => (
 					<div
 						key={index}
-						className={`flex flex-col items-center text-center ${
-							!image ? "hidden" : ""
-						}`}
+						className={`flex flex-col items-center text-center ${!image ? "hidden" : ""
+							}`}
 					>
 						{image && (
 							<img
@@ -357,9 +411,8 @@ function FAQItem({ faq, isOpen, onClick }) {
 				{isOpen ? <Minus size={20} /> : <Plus size={20} />}
 			</div>
 			<div
-				className={`overflow-hidden transition-all duration-300 ease-in-out ${
-					isOpen ? "max-h-[500px] opacity-100 mt-2" : "max-h-0 opacity-0"
-				}`}
+				className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[500px] opacity-100 mt-2" : "max-h-0 opacity-0"
+					}`}
 			>
 				<p className="text-sm sm:text-base text-gray-700">{faq.answer}</p>
 			</div>
@@ -378,10 +431,10 @@ function FAQ() {
 		<div className="container mx-auto p-4" id="contact">
 			<div>
 				<h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 text-center">
-					सर्वाधिक विचारले जाणारे प्रश्न
+					Frequently Asked Questions
 				</h2>
 				<h2 className="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 text-center">
-					तुमच्या शंका दूर करण्यासाठी काही सामान्य प्रश्न व उत्तरे
+					Common questions and answers to clear your doubts
 				</h2>
 			</div>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
@@ -400,12 +453,12 @@ function FAQ() {
 
 const DownloadApp = () => {
 	return (
-		<div className=" container mx-auto px-4">
-			<div className="relative flex  flex-col md:flex-row h-[400px] my-16 bg-[#6f40ff] rounded-3xl overflow-hidden">
-				<div className="w-full md:w-3/4 flex pl-10 md:pl-20  items-start justify-center flex-col relative top-5 md:top-0 z-20">
+		<div className="container mx-auto px-4">
+			<div className="relative flex flex-col md:flex-row h-[400px] my-16 bg-[#6f40ff] rounded-3xl overflow-hidden">
+				<div className="w-full md:w-3/4 flex pl-10 md:pl-20 items-start justify-center flex-col relative top-5 md:top-0 z-20">
 					<h1 className="text-xl md:text-4xl leading-snug md:mb-5 text-white font-bold">
-						तुमचं शहर, तुमची कम्युनिटी <br />
-						सगळं एकाच अ‍ॅपमध्ये! <br /> लव्ह आकोट आजच डाउनलोड करा!
+						Your city, Your Community <br />
+						Everything in one app! <br /><br /> Download Love Akot today!
 					</h1>
 					<a
 						href="https://play.google.com/store/apps/details?id=com.loveakot.android&pcampaignid=web_share"
@@ -413,11 +466,11 @@ const DownloadApp = () => {
 						rel="noopener noreferrer"
 					>
 						<button className="flex gap-2 bg-[#02123f] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-white hover:text-black transition-all duration-300">
-							<Download /> <span className="mt-1">डाउनलोड करा</span>
+							<Download />Download Now
 						</button>
 					</a>
 				</div>
-				<div className="relative w-full left-[0%] bottom-[5px]  md:bottom-[30%] rotate-1">
+				<div className="relative w-full left-[0%] bottom-[5px] md:bottom-[30%] rotate-1">
 					<img src={footer} alt="footer" className="w-[100%] object-cover" />
 				</div>
 			</div>
@@ -487,10 +540,12 @@ const Home = () => {
 		<div className="App">
 			<div
 				id="home"
-				className=" h-[500px] md:h-screen py-5 relative bg-gradient-to-b from-[#6f40ff] to-transparent overflow-hidden"
+				className=" h-[500px] md:h-screen py-5 relative bg-gradient-to-b to-[#bbc2ff] from-transparent overflow-hidden"
 			>
-				<NavBar />
-				<div className="mt-20 md:mt-24">
+				<div className="fixed z-[100000] flex justify-center w-full">
+					<NavBar />
+				</div>
+				<div className="mt-20 md:mt-16">
 					<HeroSection />
 				</div>
 			</div>
@@ -518,6 +573,14 @@ const Home = () => {
 			<FAQ />
 			<DownloadApp />
 			<Footer />
+			<div className="relative overflow-hidden flex justify-center" style={{ height: "14.5rem" }}>
+				<h1
+					className="text-[12.5rem] font-extrabold bg-gradient-to-t from-transparent  to-gray-300 bg-clip-text text-transparent"
+				>
+					Love ❤️ Akot
+				</h1>
+			</div>
+
 		</div>
 	);
 };
