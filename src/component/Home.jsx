@@ -65,12 +65,12 @@ const elements = [
 ];
 
 const marqueeElements = [
-	{ text: "For the people", image: "./assets/astrick.png" },
-	{ text: "By the people", image: "./assets/astrick.png" },
-	{ text: "For the people", image: "./assets/astrick.png" },
-	{ text: "By the people", image: "./assets/astrick.png" },
-	{ text: "For the people", image: "./assets/astrick.png" },
-	{ text: "By the people", image: "./assets/astrick.png" },
+	{ text: "For The People", image: "./assets/astrick.png" },
+	{ text: "By The People", image: "./assets/astrick.png" },
+	{ text: "For The People", image: "./assets/astrick.png" },
+	{ text: "By The People", image: "./assets/astrick.png" },
+	{ text: "For The People", image: "./assets/astrick.png" },
+	{ text: "By The People", image: "./assets/astrick.png" },
 ];
 
 const faqs = [
@@ -246,8 +246,8 @@ const HeroSection = () => (
 			animate={{ opacity: 1, scale: 1 }}
 			transition={{ duration: 0.8, ease: "easeOut" }}
 		>
-			<span className="text-[#02123f]">Connect, Buy, Sell & Stay Updated</span>
-			<br /> All in One Place for Akot
+			<span className="text-[#02123f]">Connect, Buy, Sell & Stay Updated <br /> All in One Place for Akot</span>
+
 		</motion.h1>
 		<motion.p
 			className="text-base sm:text-xl mt-5 px-2"
@@ -314,7 +314,7 @@ const AboutSection = () => (
 			Learn more about our community-based app
 		</motion.h2>
 		<motion.p
-			className="w-full sm:w-[80%] md:w-[50%] text-lg md:text-3xl font-semibold mx-auto leading-[160%] md:leading-[180%] text-gray-700"
+			className="w-full sm:w-[80%] md:w-[50%] text-lg md:text-3xl font-extrabold mx-auto leading-[160%] md:leading-[180%] text-gray-700"
 			initial={{ opacity: 0, y: 50 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.8, ease: "easeOut" }}
@@ -497,11 +497,7 @@ const Footer = () => {
 							className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px]"
 						/>
 					</a>
-					{/* <img
-						src={youtube}
-						alt="यूट्यूब"
-						className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px]"
-					/> */}
+
 					<a
 						href="https://www.facebook.com/loveAkot"
 						target="_blank"
@@ -523,10 +519,10 @@ const Footer = () => {
 				</div>
 				<div className="flex gap-4 lg:gap-9 mt-4 lg:mt-0">
 					<Link to={"/terms-and-conditions"}>
-						<p>अटी आणि शर्ती</p>
+						<p>Terms and Conditions</p>
 					</Link>
 					<Link to={"/privacy-policy"}>
-						<p>गोपनीयता धोरण</p>
+						<p>Privacy Policy</p>
 					</Link>
 				</div>
 			</div>
@@ -540,7 +536,7 @@ const Home = () => {
 		<div className="App">
 			<div
 				id="home"
-				className=" h-[500px] md:h-screen py-5 relative bg-gradient-to-b to-[#bbc2ff] from-transparent overflow-hidden"
+				className=" h-[500px] md:h-screen py-5 relative bg-gradient-to-b to-[#a0aaff] from-transparent overflow-hidden"
 			>
 				<div className="fixed z-[100000] flex justify-center w-full">
 					<NavBar />
@@ -575,7 +571,7 @@ const Home = () => {
 			<Footer />
 			<div className="relative overflow-hidden flex justify-center" style={{ height: "14.5rem" }}>
 				<h1
-					className="text-[12.5rem] font-extrabold bg-gradient-to-t from-transparent  to-gray-300 bg-clip-text text-transparent"
+					className="text-[12.5rem] font-extrabold bg-gradient-to-t from-transparent  to-gray-300 bg-clip-text text-transparent footer-text"
 				>
 					Love ❤️ Akot
 				</h1>
