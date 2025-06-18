@@ -9,8 +9,7 @@ import facebook from "../assets/facebook.png";
 import instagram from "../assets/instagram.png";
 import footer from "../assets/footerpng.png";
 import { Link } from "react-router-dom";
-import { useInView } from "framer-motion";
-import React, { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 
 const NAV_ITEMS = [
 	{ id: "home", label: "Home" },
