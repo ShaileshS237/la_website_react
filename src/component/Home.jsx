@@ -25,7 +25,7 @@ const Home = () => {
 		<div className="App">
 			<div
 				id="home"
-				className=" h-[500px] md:h-screen py-5 relative bg-gradient-to-b to-[#a0aaff] from-transparent overflow-hidden"
+				className="h-[700px] md:h-screen py-5 relative bg-gradient-to-b to-[#a0aaff] from-transparent overflow-hidden"
 			>
 				<div className="fixed z-[100000] flex justify-center w-full">
 					<NavBar />
@@ -35,7 +35,7 @@ const Home = () => {
 				</div>
 			</div>
 
-			<div>
+			<div className="flex flex-col gap-5">
 				<hr className="w-full mx-auto border-gray-400" />
 				<Marquee className="marquee">
 					{marqueeElements.map((element, index) => (
@@ -58,14 +58,13 @@ const Home = () => {
 			<FAQ />
 			<DownloadApp />
 			<Footer />
-			<div className="relative overflow-hidden flex justify-center" style={{ height: "14.5rem" }}>
+			<div className="relative overflow-hidden flex justify-center md:h-[14.5rem]">
 				<h1
-					className="text-[12.5rem] font-extrabold bg-gradient-to-t from-transparent  to-gray-300 bg-clip-text text-transparent footer-text"
+					className="text-[3rem] md:text-[12.5rem] font-extrabold bg-gradient-to-t from-transparent to-gray-300 bg-clip-text text-transparent footer-text"
 				>
 					Love ❤️ Akot
 				</h1>
 			</div>
-
 		</div>
 	);
 };

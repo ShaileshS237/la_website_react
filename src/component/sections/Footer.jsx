@@ -7,8 +7,16 @@ const Footer = () => {
     return (
         <div className="container mx-auto mt-10 px-4">
             <div className="py-4 flex flex-col lg:flex-row justify-between items-center">
-                <div className="mb-4 lg:mb-0 flex justify-center md:justify-start">
-                    <img src={logo} alt="लोगो" className="w-[40%] lg:w-[20%]" />
+                <div className="mb-4 lg:mb-0 relative flex justify-center md:justify-start">
+                    <img
+                        src={logo}
+                        alt="logo"
+                        className="w-28 sm:w-40 mb-2 mr-2"
+                        loading="lazy"
+                    />
+                    <span className="absolute -top-1 -right-7 text-black text-xs px-1.5 py-0.5 rounded-md font-light ">
+                        Beta
+                    </span>
                 </div>
                 <div className="flex gap-4 lg:gap-5 items-center">
                     <a
