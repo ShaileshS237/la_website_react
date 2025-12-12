@@ -1,45 +1,53 @@
+import feature1 from "../../assets/features/1.png";
+import feature2 from "../../assets/features/2.png";
+import feature3 from "../../assets/features/3.png";
+import feature4 from "../../assets/features/4.png";
+import feature5 from "../../assets/features/5.png";
+import feature6 from "../../assets/features/6.png";
+import feature7 from "../../assets/features/7.png";
+
 const elements = [
     {
         text: "Love Akot Market",
         description:
             "Get complete information about the city's marketplaces. Locate grocery stores, clothing shops, electronics outlets, and various other stores along with their timings and offers.",
-        image: require("../../assets/features/7.png"),
+        image: feature7,
     },
     {
         text: "Love Akot Jivandata",
         description:
             "Important details on blood donation and healthcare services. Find out where blood is needed, which hospitals have blood banks, and access emergency health services.",
-        image: require("../../assets/features/5.png"),
+        image: feature5,
     },
     {
         text: "Love Akot Times",
         description:
             "Read the latest local and national news here. Stay updated with your city's events, government decisions, and trending social, economic, and political news.",
-        image: require("../../assets/features/2.png"),
+        image: feature2,
     },
     {
         text: "Love Akot Sahayata",
         description:
             "Emergency contacts for immediate help. Includes information for police, ambulance services, fire brigades, power outages, and other urgent services.",
-        image: require("../../assets/features/3.png"),
+        image: feature3,
     },
     {
         text: "Love Akot Prices",
         description:
             "Get updated information on agricultural yields and market prices. Check current rates for produce, sale updates, and other key financial details for farmers and traders.",
-        image: require("../../assets/features/6.png"),
+        image: feature6,
     },
     {
         text: "Love Akot Nagarisamsya",
         description:
             "Information on the city's civic amenities and services. Learn about water supply, waste management, tax payments, road repairs, and other civic updates.",
-        image: require("../../assets/features/4.png"),
+        image: feature4,
     },
     {
         text: "Love Akot Gupshup",
         description:
             "A dedicated section for community discussions and forums. Connect with local residents on various topics, make new friends, and actively participate in your community.",
-        image: require("../../assets/features/1.png"),
+        image: feature1,
     },
 ];
 
